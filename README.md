@@ -9,7 +9,7 @@
 - Crie no MySL um database com o nome de iex;
 - No arquivo .env altere insira suas informações pessoais (DB_USERNAME  e DB_PASSWORD);
 - Rode o comando: php artisan key:generate ;
+- Rode o comando: php artisan migrate ;
 - Por fim rode o comando php artisan serve .
 
 Abra teu navegador no endereço retornado na linha de comando.
-
