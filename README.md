@@ -6,7 +6,7 @@
 
 ### Ao baixar o projeto realize os seguintes passos:
 - composer install (para instalar as dependências);
-- Crie no MySL um database com o nome de iex;
+- Crie no MySL um database com o nome: iex;
 - No arquivo .env altere insira suas informações pessoais (DB_USERNAME  e DB_PASSWORD);
 - Rode o comando: php artisan key:generate ;
 - Rode o comando: php artisan migrate ;
