@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/index', 'App\Http\Controllers\Resource\CompanyController@index')->name('index');
+Route::get('/', 'App\Http\Controllers\Resource\CompanyController@index')->name('index');
 
 Route::get('/search', 'App\Http\Controllers\Resource\CompanyController@search')->name('search');
+
+Route::get('/show', 'App\Http\Controllers\Resource\CompanyController@search')->name('search');

@@ -46,7 +46,7 @@ class CompanyController extends Controller
             }
             return view('company')->with('quote', $quote);
         } else {
-            return redirect('index')->with('error', 'Symbol Not Found');
+            return redirect('/')->with('error', 'Symbol Not Found');
         }
     }
 
