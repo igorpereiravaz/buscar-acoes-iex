@@ -24,7 +24,10 @@ class CompanyController extends Controller
         $company->industry = $companyData['industry'];
         $company->website = $companyData['website'];
         $company->sector = $companyData['sector'];
+        $company->latestUpdate = (date("Y-m-d H:i:s", substr($quote['latestUpdate'], 0, 10)));
         $company->save();
+
+        return $company;
     }
 
     public function search(Request $request)
@@ -34,26 +37,32 @@ class CompanyController extends Controller
         ]);
 
         $iex = New IexApi();
-        $quote = $iex->getQuote($request->symbol);
-        $companyData = $iex->getCompany($request->symbol);
 
-        if($quote){
-            $company  = Company::where("symbol",$request->symbol)->get()->first();
-            if($company){ //atualizar o lastprice
-                $this->update($company, $quote);
-            } else {
-                $this->create($quote, $companyData);
-            }
-            return view('company')->with('quote', $quote);
+        $company = Company::where("symbol",$request->symbol)->get()->first();
+        if ($company) {
+            $quote = $iex->getQuote($request->symbol);
+
+            $companyQuote = $this->update($company, $quote);
+            return view('company')->with('companyQuote', $companyQuote);
         } else {
-            return redirect('/')->with('error', 'Symbol Not Found');
+            $quote = $iex->getQuote($request->symbol);
+            $companyData = $iex->getCompany($request->symbol);
+            if($quote) {
+                    $companyQuote = $this->create($quote, $companyData);
+                    return view('company')->with('companyQuote', $companyQuote);
+            } else {
+                return redirect('/')->with('error', 'Symbol Not Found');
+            }
         }
     }
 
     public function update($company, $quote)
     {
         $company->latestPrice = $quote['latestPrice'];
+        $company->latestUpdate = (date("Y-m-d H:i:s", substr($quote['latestUpdate'], 0, 10)));
         $company->save();
+
+        return $company;
     }
 
 }
