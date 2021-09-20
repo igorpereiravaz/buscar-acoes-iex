@@ -68,10 +68,11 @@
             <div>
                 <label for="fname"><h2>Quote Data:</h2></label>
             </div>
-            <h3>Company Name: {{ $quote['companyName'] }}</h3>
-            <h3>Symbol: {{ $quote['symbol'] }}</h3>
-            <h3>Currency: {{ $quote['currency'] }}</h3>
-            <h3>Latest Price: ${{ $quote['latestPrice'] }}</h3>
+            <h3>Company Name: {{ $companyQuote->companyName }}</h3>
+            <h3>Symbol: {{ $companyQuote->symbol }}</h3>
+            <h3>Currency: {{ $companyQuote->currency }}</h3>
+            <h3>Latest Price: ${{ $companyQuote->latestPrice }}</h3>
+            <h3>Latest Update: {{ $companyQuote->latestUpdate }}</h3>
             <div>
                 <a href="{{ route('index') }}" class="btn">Go Back</a>
             </div>
