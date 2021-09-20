@@ -22,6 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->string('industry')->nullable();
             $table->string('website')->nullable();
             $table->string('sector')->nullable();
+            $table->dateTime('latestUpdate')->nullable();
             $table->timestamps();
         });
     }
